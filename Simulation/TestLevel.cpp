@@ -34,7 +34,7 @@ void TestLevel::Init()
     LightObject* lightsource = new LightObject("light");
     lightsource->SetMeshGroup(GRAPHICS->GetMeshGroup("customsphere"));
     lightsource->SetShader("shader");
-    lightsource->transform.Scale(glm::vec3(0.2, 0.2, 0.2));
+    lightsource->transform.Translate(glm::vec3(-21, 20.1, 30));
     lightsource->drawmode = 1;
     lightsource->type = LightType::POINT;
     lightsource->should_draw = false;

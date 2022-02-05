@@ -22,6 +22,9 @@ public:
     int mapping_option = 0;
     bool should_mapping_on_gpu = true;
     bool useIMGUI = true;
+    Object* current_point = nullptr,*prev_point=nullptr;
+    int point_num = 0;
+    std::unordered_map<unsigned, Object*> control_points;
 
 };
 extern imGUIManager* IMGUIMANAGER;

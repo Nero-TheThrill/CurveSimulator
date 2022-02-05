@@ -31,5 +31,7 @@ public:
     bool should_calculate_uv_in_gpu = true;
     bool mapping_with_normal = false;
     bool should_draw = true;
+    bool is_input_point = false;
+    int pointnum = 0;
 
 };
