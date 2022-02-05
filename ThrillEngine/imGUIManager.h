@@ -10,7 +10,6 @@ public:
     void Update();
     void Init();
     ~imGUIManager();
-    Object* current_item = nullptr,*prev_item=nullptr,*center_obj=nullptr;
     LightObject* current_light = nullptr,*prev_light=nullptr;
     bool shouldRotatelight = true;
     bool lightNumberChanged = true;
@@ -25,6 +24,8 @@ public:
     Object* current_point = nullptr,*prev_point=nullptr;
     int point_num = 0;
     std::unordered_map<unsigned, Object*> control_points;
+    GLuint VAO,VBO;
+    std::vector<glm::vec3> cp;
 
 };
 extern imGUIManager* IMGUIMANAGER;

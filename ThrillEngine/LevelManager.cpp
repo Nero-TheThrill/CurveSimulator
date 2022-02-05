@@ -32,7 +32,7 @@ void LevelManager::ChangeLevel(LevelID levelid)
 
     current_level = levels[levelid];
     current_level->Init();
-    IMGUIMANAGER->current_item = nullptr;
+
 }
 
 void LevelManager::InsertLevel(LevelStructure* pLevel, LevelID levelid)
