@@ -23,9 +23,10 @@ public:
     bool useIMGUI = true;
     Object* current_point = nullptr,*prev_point=nullptr;
     int point_num = 0;
-    std::unordered_map<unsigned, Object*> control_points;
+    std::vector<Object*> control_points;
     GLuint VAO,VBO;
     std::vector<glm::vec3> cp;
+    std::vector<glm::vec3> curve;
 
 };
 extern imGUIManager* IMGUIMANAGER;

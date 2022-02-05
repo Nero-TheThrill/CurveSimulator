@@ -71,34 +71,40 @@ void imGUIManager::Update()
             ImGui::SameLine();
             if (ImGui::Button("Add Point"))
             {
-                if (prev_point != nullptr)
+                if (control_points.size() < 20)
                 {
-                    prev_point->item_selected = false;
-                }
-                if (current_point != nullptr)
-                {
-                    current_point->item_selected = false;
-                }
-                current_point = new Object("point"+std::to_string(point_num));
-                current_point->SetMeshGroup(GRAPHICS->GetMeshGroup("customsphere"));
-                current_point->SetShader("phong");
-                current_point->material = GRAPHICS->GetMaterial("m_default");
-                current_point->transform.Scale(glm::vec3(0.5f));
-                current_point->drawmode = 1;
-                current_point->mapping_mode = 1;
-                current_point->pointnum = point_num;
-                current_point->item_selected = true;
-                control_points.insert(std::pair<unsigned, Object*>(point_num, current_point));
 
-                point_num++;
+
+                    if (prev_point != nullptr)
+                    {
+                        prev_point->item_selected = false;
+                    }
+                    if (current_point != nullptr)
+                    {
+                        current_point->item_selected = false;
+                    }
+                    current_point = new Object("point" + std::to_string(point_num));
+                    current_point->SetMeshGroup(GRAPHICS->GetMeshGroup("customsphere"));
+                    current_point->SetShader("phong");
+                    current_point->material = GRAPHICS->GetMaterial("m_default");
+                    current_point->transform.Scale(glm::vec3(0.2f));
+                    current_point->drawmode = 1;
+                    current_point->mapping_mode = 1;
+                    current_point->pointnum = point_num;
+                    current_point->item_selected = true;
+                    control_points.push_back(current_point);
+
+                    point_num++;
+                }
             }
             ImGui::SameLine();
             if (ImGui::Button("Delete Point"))
             {
                 if (current_point != nullptr)
                 {
-                   
-                    control_points.erase(current_point->pointnum);
+                    std::vector<Object*>::iterator erase_this = std::find(control_points.begin(), control_points.end(), current_point);
+                    if(erase_this!=control_points.end())
+                        control_points.erase(erase_this);
                     current_point->alive = false;
                     current_point = nullptr;
                 }
@@ -112,12 +118,12 @@ void imGUIManager::Update()
 
                 for (auto obj : control_points)
                 {
-                    if (obj.second != nullptr)
+                    if (obj != nullptr)
                     {
-                        bool is_selected = (current_point == obj.second);
-                        if (ImGui::Selectable(obj.second->name.c_str(), is_selected))
+                        bool is_selected = (current_point == obj);
+                        if (ImGui::Selectable(obj->name.c_str(), is_selected))
                         {
-                            current_point = obj.second;
+                            current_point = obj;
                         }
                         if (is_selected)
                             ImGui::SetItemDefaultFocus();
@@ -156,9 +162,46 @@ void imGUIManager::Update()
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
     cp.clear();
+    curve.clear();
+    float steps = control_points.size();
+    float alpha = 1 / (steps*6.f);
+    long double arr_x[23][23];
+    long double arr_y[23][23];
+    long double arr_z[23][23];
+    for(float t=0;t<steps-1;t+=alpha)
+    {
+        for (int i = 0; i < steps; i++)
+        {
+            arr_x[i][i] = control_points[i]->transform.position.x;
+            arr_y[i][i] = control_points[i]->transform.position.y;
+            arr_z[i][i] = control_points[i]->transform.position.z;
+        }
+        for (int gap = 1; gap <= steps; gap++)
+        {
+            for (int i = 0; i <= steps - gap; i++)
+            {
+                arr_x[i][i + gap] = (arr_x[i + 1][i + gap] - arr_x[i][ i + gap - 1]) / (gap);
+                arr_y[i][i + gap] = (arr_y[i + 1][i + gap] - arr_y[i][ i + gap - 1]) / (gap);
+                arr_z[i][i + gap] = (arr_z[i + 1][i + gap] - arr_z[i][i + gap - 1]) / (gap);
+            }
+        }
+        long double tVal = 1;
+        long double sum_x = 0, sum_y = 0,sum_z=0;
+        for (int i = 0; i < steps; i++)
+        {
+            sum_x += arr_x[0][i] * tVal;
+            sum_y += arr_y[0][i] * tVal;
+            sum_z += arr_z[0][i] * tVal;
+            tVal *= (t - i);
+        }
+
+        curve.push_back(glm::vec3(sum_x, sum_y, sum_z));
+    }
+
+
     for (auto p : control_points)
     {
-        cp.push_back(p.second->transform.position);
+        cp.push_back(p->transform.position);
     }
     if (cp.size() > 0)
     {
@@ -172,6 +215,23 @@ void imGUIManager::Update()
         glEnableVertexAttribArray(0);
 
         glDrawArrays(GL_LINE_STRIP, 0, static_cast<GLsizei>(cp.size()));
+        glDisableVertexAttribArray(0);
+        glBindVertexArray(0);
+        glUseProgram(0);
+    }
+    if(curve.size()>0)
+    {
+        curve.push_back(control_points[control_points.size() - 1]->transform.position);
+        glUseProgram(GRAPHICS->GetShader("shader").program_handle);
+        GRAPHICS->GetShader("shader").set("model", glm::translate(glm::mat4(1.0f), glm::vec3(0)));
+        GRAPHICS->GetShader("shader").set("objectColor", glm::vec3(0.7f,0,0));
+        glBindVertexArray(VAO);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferData(GL_ARRAY_BUFFER, static_cast<GLsizeiptr>(sizeof(float)* curve.size() * 3), &curve[0], GL_STATIC_DRAW);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+        glEnableVertexAttribArray(0);
+
+        glDrawArrays(GL_LINE_STRIP, 0, static_cast<GLsizei>(curve.size()));
         glDisableVertexAttribArray(0);
         glBindVertexArray(0);
         glUseProgram(0);
