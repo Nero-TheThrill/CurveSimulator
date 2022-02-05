@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{ede7556e-1510-4b1a-abc0-c6659120ca01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore">
+      <UniqueIdentifier>{5f0a334c-9caa-4849-bc73-6632c95f2a34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\Application">
+      <UniqueIdentifier>{d5c5ad5d-d572-441e-a327-ccabef57ae9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\Input">
+      <UniqueIdentifier>{0609fffc-47c6-4324-b4e7-e21bfffc5c4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{a50eecd9-f99b-403a-856e-7055e1d36319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Material">
+      <UniqueIdentifier>{f6cf9ecb-c7fc-432e-bd23-cbd77d378c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\LevelManager">
+      <UniqueIdentifier>{1ed44a21-4f8e-4a4e-838d-822a79fb30c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{9cbc66b7-e0de-4335-9b2d-eb709c536109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\ObjectManager">
+      <UniqueIdentifier>{64d45c99-7700-429d-b0dc-da5fc81b3b87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component">
+      <UniqueIdentifier>{00653454-f75a-4c77-a1a6-ffa3664c9ef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Transform">
+      <UniqueIdentifier>{3c073931-c24a-4f36-b6fa-72a77df9cb99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Camera">
+      <UniqueIdentifier>{34a3f236-2d07-49ae-892a-c196e97264bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Material\Shader">
+      <UniqueIdentifier>{4bd644db-b1fe-4fcc-b7ee-8ff4fe5d8f40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Material\Texture">
+      <UniqueIdentifier>{0a9a97c2-3a11-4df1-9114-c28cd907a4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\Time">
+      <UniqueIdentifier>{1e86e41f-506d-41fa-8405-3e2fd46755c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IMGUI">
+      <UniqueIdentifier>{320604a7-a086-4982-9077-c9ec5bb5c666}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\imGUIManager">
+      <UniqueIdentifier>{601d7275-6fe1-4092-8bc0-64ec3415e3da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\MeshGroup">
+      <UniqueIdentifier>{7816419e-3925-4cb6-b4bc-538a47496b71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\MeshGroup\Mesh">
+      <UniqueIdentifier>{dc375ce1-294a-43c8-be7d-e3587c25f0e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\MeshGroup\Mesh\ModelMesh">
+      <UniqueIdentifier>{4f86f282-ce10-4560-88be-9c2dc9fbc593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\MeshGroup\Mesh\LineMesh">
+      <UniqueIdentifier>{131cd1cc-ac5f-44b2-88d4-6a8539a89d6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\ObjectLoader">
+      <UniqueIdentifier>{d9d2697e-f553-4635-bc55-78d717df9ef9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\LightObject">
+      <UniqueIdentifier>{816be4fe-81f2-459a-be87-b952bf871eac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\stbi_image">
+      <UniqueIdentifier>{e620ba55-a88e-406f-a692-f24482f16fd5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>EngineCore\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>EngineCore\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\source\glad\glad.c" />
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Graphics\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Object\ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>EngineCore\LevelManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Object\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Graphics\Material\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Graphics\Material\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>EngineCore\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\source\imgui\imgui.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\source\imgui\imgui_demo.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\source\imgui\imgui_draw.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\source\imgui\imgui_impl_glfw.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\source\imgui\imgui_impl_opengl3.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\source\imgui\imgui_tables.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\source\imgui\imgui_widgets.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imGUIManager.cpp">
+      <Filter>Graphics\imGUIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelMesh.cpp">
+      <Filter>Object\Component\MeshGroup\Mesh\ModelMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="LineMesh.cpp">
+      <Filter>Object\Component\MeshGroup\Mesh\LineMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshGroup.cpp">
+      <Filter>Object\Component\MeshGroup</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectLoader.cpp">
+      <Filter>Object\ObjectLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="LightObject.cpp">
+      <Filter>Object\LightObject</Filter>
+    </ClCompile>
+    <ClCompile Include="UVGenerator.cpp">
+      <Filter>Object\ObjectLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Graphics\stbi_image</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>EngineCore\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>EngineCore\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Graphics\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Object\ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineCore.h">
+      <Filter>EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelStructure.h">
+      <Filter>EngineCore\LevelManager</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>EngineCore\LevelManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Object\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Graphics\Material\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Object\Component\MeshGroup\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Graphics\Material\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>EngineCore\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\source\imgui\imconfig.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\source\imgui\imgui.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\source\imgui\imgui_impl_glfw.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\source\imgui\imgui_impl_opengl3.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\source\imgui\imgui_internal.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\source\imgui\imstb_rectpack.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\source\imgui\imstb_textedit.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\source\imgui\imstb_truetype.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelMesh.h">
+      <Filter>Object\Component\MeshGroup\Mesh\ModelMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="LineMesh.h">
+      <Filter>Object\Component\MeshGroup\Mesh\LineMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshGroup.h">
+      <Filter>Object\Component\MeshGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectLoader.h">
+      <Filter>Object\ObjectLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="LightObject.h">
+      <Filter>Object\LightObject</Filter>
+    </ClInclude>
+    <ClInclude Include="UVGenerator.h">
+      <Filter>Object\ObjectLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="imGUIManager.h">
+      <Filter>Graphics\imGUIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\source\stb_image.h">
+      <Filter>Graphics\stbi_image</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
