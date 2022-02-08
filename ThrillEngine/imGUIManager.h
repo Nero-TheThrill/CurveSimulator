@@ -27,6 +27,7 @@ public:
     GLuint VAO,VBO;
     std::vector<glm::vec3> cp;
     std::vector<glm::vec3> curve;
+    bool draw_polyline = true,draw_points=true;
 
 };
 extern imGUIManager* IMGUIMANAGER;

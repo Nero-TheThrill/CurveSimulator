@@ -153,7 +153,13 @@ void imGUIManager::Update()
 
 
             }
-
+            ImGui::Checkbox("Draw Polyline", &draw_polyline);
+            ImGui::SameLine();
+            ImGui::Checkbox("Draw Points", &draw_points);
+            for(auto p:control_points)
+            {
+                p->should_draw = draw_points;
+            }
             ImGui::End();
         }
 
@@ -198,26 +204,28 @@ void imGUIManager::Update()
         curve.push_back(glm::vec3(sum_x, sum_y, sum_z));
     }
 
-
-    for (auto p : control_points)
+    if (draw_polyline)
     {
-        cp.push_back(p->transform.position);
-    }
-    if (cp.size() > 0)
-    {
-        glUseProgram(GRAPHICS->GetShader("shader").program_handle);
-        GRAPHICS->GetShader("shader").set("model", glm::translate(glm::mat4(1.0f), glm::vec3(0)));
-        GRAPHICS->GetShader("shader").set("objectColor", glm::vec3(0.7f));
-        glBindVertexArray(VAO);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, static_cast<GLsizeiptr>(sizeof(float) * cp.size() * 3), &cp[0], GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-        glEnableVertexAttribArray(0);
+        for (auto p : control_points)
+        {
+            cp.push_back(p->transform.position);
+        }
+        if (cp.size() > 0)
+        {
+            glUseProgram(GRAPHICS->GetShader("shader").program_handle);
+            GRAPHICS->GetShader("shader").set("model", glm::translate(glm::mat4(1.0f), glm::vec3(0)));
+            GRAPHICS->GetShader("shader").set("objectColor", glm::vec3(0.7f));
+            glBindVertexArray(VAO);
+            glBindBuffer(GL_ARRAY_BUFFER, VBO);
+            glBufferData(GL_ARRAY_BUFFER, static_cast<GLsizeiptr>(sizeof(float) * cp.size() * 3), &cp[0], GL_STATIC_DRAW);
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+            glEnableVertexAttribArray(0);
 
-        glDrawArrays(GL_LINE_STRIP, 0, static_cast<GLsizei>(cp.size()));
-        glDisableVertexAttribArray(0);
-        glBindVertexArray(0);
-        glUseProgram(0);
+            glDrawArrays(GL_LINE_STRIP, 0, static_cast<GLsizei>(cp.size()));
+            glDisableVertexAttribArray(0);
+            glBindVertexArray(0);
+            glUseProgram(0);
+        }
     }
     if(curve.size()>0)
     {

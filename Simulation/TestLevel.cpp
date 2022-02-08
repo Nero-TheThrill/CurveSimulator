@@ -20,15 +20,15 @@ void TestLevel::Init()
 
 
 
-    centerobj = new Object("centerobject");
-    centerobj->SetMeshGroup(GRAPHICS->GetMeshGroup("bunny"));
-    centerobj->SetShader("phong");
-    centerobj->material = GRAPHICS->GetMaterial("m_default");
-    centerobj->transform.Translate(glm::vec3(-21,-12.1,-10));
-    centerobj->transform.Rotate(43,glm::vec3(0, 1.f, -0.21f));
-    centerobj->transform.Scale(glm::vec3(3.f));
-    centerobj->drawmode = 1;
-    centerobj->mapping_mode = 1;
+    //centerobj = new Object("centerobject");
+    //centerobj->SetMeshGroup(GRAPHICS->GetMeshGroup("bunny"));
+    //centerobj->SetShader("phong");
+    //centerobj->material = GRAPHICS->GetMaterial("m_default");
+    //centerobj->transform.Translate(glm::vec3(-21,-12.1,-10));
+    //centerobj->transform.Rotate(43,glm::vec3(0, 1.f, -0.21f));
+    //centerobj->transform.Scale(glm::vec3(3.f));
+    //centerobj->drawmode = 1;
+    //centerobj->mapping_mode = 1;
 
 
     LightObject* lightsource = new LightObject("light");
@@ -40,7 +40,7 @@ void TestLevel::Init()
     lightsource->should_draw = false;
 
 
-    GRAPHICS->centerobj = centerobj;
+  /*  GRAPHICS->centerobj = centerobj;*/
 
     GRAPHICS->camera.View(glm::vec3(0.0f, 4.0f, 25));
     GRAPHICS->camera.SetPitch(-10);

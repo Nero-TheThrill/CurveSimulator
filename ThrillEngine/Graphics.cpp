@@ -21,7 +21,7 @@ Graphics::Graphics()
 
 void Graphics::Init()
 {
-    camera.Projection(45, 0.1f, 2000.f);
+    camera.Projection(45, 0.1f, 10000.f);
     camera.View(glm::vec3(0.0f, 4.0f, 25));
     camera.RotateXaxis(10);
     InitPVmatrices();
@@ -117,7 +117,10 @@ void Graphics::UpdateLightInfo()
     for (auto light : lights)
     {
         glBufferSubData(GL_UNIFORM_BUFFER, 64 + iter * lightstride, sizeof(unsigned), &(light.second->type));
-        light.second->direction = centerobj->transform.position-light.second->transform.position;
+        if (centerobj != nullptr)
+            light.second->direction = centerobj->transform.position - light.second->transform.position;
+        else
+            light.second->direction = glm::vec3(0);
         glBufferSubData(GL_UNIFORM_BUFFER, 64 + iter * lightstride + 16, sizeof(glm::vec3), glm::value_ptr(light.second->direction));
         glBufferSubData(GL_UNIFORM_BUFFER, 64 + iter * lightstride + 32, sizeof(glm::vec3), glm::value_ptr(light.second->transform.position));
         glBufferSubData(GL_UNIFORM_BUFFER, 64 + iter * lightstride + 48, sizeof(glm::vec3), glm::value_ptr(light.second->ambient));
